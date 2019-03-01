@@ -3,6 +3,6 @@ class Captain < ActiveRecord::Base
   has_many :classifications, through: :boats
 
   def self.catamaran_operators
-    self.joins(:classifications).where("classification.name = 'Catamaran'")
+    self.joins(:classifications).where("classifications.name = 'Catamaran'")
   end
 end
