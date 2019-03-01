@@ -11,6 +11,6 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seafarers
-    self.joins(:classifications).where("classifications.name = 'Sailboat' AND classifications.name = 'Motorboat'")
+    self.joins(:classifications).where("classifications.name = 'Sailboat' OR classifications.name = 'Motorboat'")
   end
 end
