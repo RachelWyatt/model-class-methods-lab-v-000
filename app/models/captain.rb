@@ -10,7 +10,12 @@ class Captain < ActiveRecord::Base
     self.joins(:classifications).where("classifications.name = 'Sailboat'").uniq
   end
 
+  def self.motors
+    self.joins(:classifications).where("classifications.name = 'Motorboat'").uniq
+  end
+
   def self.talented_seafarers
-    self.joins(:classifications).where("classifications.name.includes('Sailboat')")
+    ids = self.sailors.ids & self.motors.ids
+    self.sailors.where(id: ids)
   end
 end
