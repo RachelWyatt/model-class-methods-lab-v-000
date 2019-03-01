@@ -18,4 +18,8 @@ class Captain < ActiveRecord::Base
     ids = self.sailors.ids & self.motors.ids
     self.sailors.where(id: ids)
   end
+
+  def self.non_sailors
+    self.joins(:classifications).where("classifications.name != 'Sailboat'").uniq
+  end
 end
