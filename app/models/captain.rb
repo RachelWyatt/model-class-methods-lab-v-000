@@ -20,6 +20,7 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
-    self.joins(:classifications).where.not("classifications.name = 'Sailboat'").uniq
+    ids = self.all.ids - self.sailors.ids
+    self.all.where(id: ids)
   end
 end
